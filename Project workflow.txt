@@ -1,0 +1,83 @@
+## ?? Project Workflow: E-commerce Customer Segmentation
+
+This project aims to segment customers of an e-commerce platform based on their purchasing behavior using RFM analysis, clustering, product similarity with BERT, and CLV prediction.
+
+---
+
+### ?? 1. **Import Required Libraries**
+Import all essential libraries for data manipulation, visualization, modeling, and machine learning tasks.
+
+---
+
+### ?? 2. **Data Loading and Cleaning**
+- Load data from a CSV file.
+- Remove missing and duplicate values.
+- Convert `InvoiceDate` to datetime format.
+- Filter out negative `Quantity` and `UnitPrice`.
+- Create a new column `TotalSales = Quantity × UnitPrice`.
+
+---
+
+### ?? 3. **Initial EDA (Exploratory Data Analysis)**
+- Summary statistics using `.describe()`.
+- Plot histograms of `TotalSales` and `Quantity`.
+- Scatter plot: `Quantity vs TotalSales`.
+
+---
+
+### ?? 4. **RFM Feature Engineering**
+- Calculate Recency, Frequency, and Monetary values for each customer.
+- Additional Features:
+  - **AvgOrderValue**
+  - **Tenure** (customer age)
+  - **AvgBasketSize**
+
+---
+
+### ?? 5. **Clustering**
+- Scale features using `StandardScaler`.
+- Use KMeans to cluster customers (with silhouette score to find optimal `k`).
+- Assign `Cluster` label to each customer.
+- Visualize clusters using:
+  - Heatmap of cluster averages.
+  - 3D PCA plot.
+  - 2D t-SNE plot.
+
+---
+
+### ?? 6. **Product Similarity (BERT + Cosine Similarity)**
+- Use Sentence-BERT (`MiniLM-L6-v2`) to embed product descriptions.
+- Compute cosine similarity.
+- Retrieve top 5 similar products for any given description.
+
+---
+
+### ?? 7. **Customer Lifetime Value (CLV) Prediction**
+- Features: `Recency`, `Frequency`, `AvgOrderValue`, `Tenure`
+- Target: `Monetary`
+- Model: `XGBoost Regressor`
+- Predict CLV for each customer.
+- Visualize CLV distribution with histogram.
+
+---
+
+### ?? 8. **Save Models**
+Store trained:
+- Scaler
+- KMeans model
+- CLV regression model  
+Using `joblib.dump()`.
+
+---
+
+### ?? 9. **Insights & Visualization**
+- Boxplots of `Monetary` across clusters.
+- Cluster-wise average feature values.
+- Predicted CLV insights and customer segmentation.
+
+---
+
+### ? 10. **Conclusion**
+This workflow helps identify:
+- High-value customers.
+- Churn-prone users (high recenc
